@@ -3,9 +3,7 @@ function Invoke-CoinbaseProRequest {
         [Parameter()] $Request    
     )
 
-    $EpochStart = Get-Date -Date "01/01/1970"
-    $Timestamp = (New-TimeSpan -Start $EpochStart -End (Get-Date).ToUniversalTime()).TotalSeconds
-    $Timestamp = ([math]::Round($Timestamp, 0)).ToString()
+    $Timestamp = Get-Date -UFormat %s
     $Prehash = $Timestamp + $request.method.ToUpper() + $request.url + $request.body
     $Signature_b64 = Get-HMAC -Message $prehash -Secret $request.secret
     $Header = @{
