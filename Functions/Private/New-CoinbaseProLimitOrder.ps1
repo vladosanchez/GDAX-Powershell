@@ -8,9 +8,9 @@ function New-CoinbaseProLimitOrder {
         [parameter(Mandatory=$true)]$Size,
         [parameter(Mandatory=$true)][ValidateScript({ Test-Product $_ })]$ProductID,
         [parameter()]$OrderID,
-        [parameter()][ValidateSet("dd","co","cn","cb")][string]$STP,
-        [parameter()][ValidateSet("GTC","GTT","IOC","FOK")][string]$TimeinForce,
-        [parameter()]$CancelAfter,
+        [parameter()][ValidateSet("dc","co","cn","cb")][string]$STP = "dc",
+        [parameter()][ValidateSet("GTC","GTT","IOC","FOK")][string]$TimeinForce = "GTT",
+        [parameter()][ValidateSet("min","hour","day")][string]$CancelAfter,    
         [parameter()][ValidateSet("true","false")]$PostOnly,
         [parameter()] [switch] $SandboxAPI
     )
